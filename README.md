@@ -21,17 +21,18 @@ $ moment --help
 
   Options:
 
-    -h, --help                 output usage information
     -V, --version              output the version number
     -i --inputFormat <format>  e.g: "MM-DD-YYYY". Special handling for "unix".
     -f --format <format>       Output format. See momentjs docs for options.
     -t --timeago               Output in `timeago` format (fromNow).
     -c --calendar              Output in `calendar` format.
+    -C --altCalendar           Output in alternative `calendar` format.
     -u --unix                  Output a unix timestamp (secs since Epoch).
     -j --js                    Ouput a JavaScript timestamp (ms since Epoch).
     -z --inputTimezone <tz>    Use specified timezone when parsing input
     -Z --outputTimezone <tz>   Convert output to specified timezone
     -H --military              Use 24-hour (military) time in output by default
+    -h, --help                 output usage information
 ```
 
 Examples
