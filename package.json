@@ -9,6 +9,20 @@
     "commander": "~2.15.1",
     "moment-timezone": "^0.5.16"
   },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-loader": "2.0.0",
+    "eslint-plugin-flowtype": "2.46.3",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/b0o/moment-tz-cli.git"
