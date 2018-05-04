@@ -1,13 +1,14 @@
-moment-cli
+moment-tz-cli
 ==========
 
-CLI for printing dates via [momentjs](http://momentjs.com/).
+CLI for printing dates via [momentjs](http://momentjs.com/), with timezone
+support.
 
 Install
 -------
 
 ```
-$ npm install -g moment-cli
+$ npm install -g moment-tz-cli
 ```
 
 Usage
@@ -22,12 +23,15 @@ $ moment --help
 
     -h, --help                 output usage information
     -V, --version              output the version number
-    -i, --inputFormat <format>  e.g: "MM-DD-YYYY". Special handling for "unix".
-    -f, --format <format>       Output format. See momentjs docs for options.
-    -t, --timeago               Output in `timeago` format (fromNow).
-    -c, --calendar              Output in `calendar` format.
-    -u, --unix                  Output a unix timestamp (secs since Epoch).
-    -j, --js                    Ouput a JavaScript timestamp (ms since Epoch).
+    -i --inputFormat <format>  e.g: "MM-DD-YYYY". Special handling for "unix".
+    -f --format <format>       Output format. See momentjs docs for options.
+    -t --timeago               Output in `timeago` format (fromNow).
+    -c --calendar              Output in `calendar` format.
+    -u --unix                  Output a unix timestamp (secs since Epoch).
+    -j --js                    Ouput a JavaScript timestamp (ms since Epoch).
+    -z --inputTimezone <tz>    Use specified timezone when parsing input
+    -Z --outputTimezone <tz>   Convert output to specified timezone
+    -H --military              Use 24-hour (military) time in output by default
 ```
 
 Examples
@@ -302,13 +306,18 @@ Formatting Cheat-sheet
 
 - - -
 
-### Developed by [Terra Eclipse](http://www.terraeclipse.com)
+### Currently Developed and Maintained by Maddison Hellstrom
+Maddison is a software engineer based in the San Francisco Bay Area.
+
+### Based on [moment-cli](https://github.com/cpsubrian/node-moment-cli), Developed by [Terra Eclipse](http://www.terraeclipse.com)
 Terra Eclipse, Inc. is a nationally recognized political technology and
 strategy firm located in Aptos, CA and Washington, D.C.
 
 - - -
 
 ### License: MIT
+Copyright (C) 2018 Maddison Hellstrom
+
 Copyright (C) 2012 Terra Eclipse, Inc. ([http://www.terraeclipse.com](http://www.terraeclipse.com))
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
