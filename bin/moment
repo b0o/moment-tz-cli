@@ -1,79 +1,69 @@
 #!/usr/bin/env node
 
-var program = require('commander')
-  , moment = require('moment-timezone')
-  , pkg = require('../package.json');
+const program = require("commander")
+const moment = require("moment-timezone")
+const pkg = require("../package.json")
 
 program
   .version(pkg.version)
-  .usage('<input> [options]')
-  .option('-i --inputFormat <format>', 'e.g: "MM-DD-YYYY". Special handling for "unix".')
-  .option('-f --format <format>', 'Output format. See momentjs docs for options.')
-  .option('-t --timeago', 'Output in `timeago` format (fromNow).')
-  .option('-c --calendar', 'Output in `calendar` format.')
-  .option('-u --unix', 'Output a unix timestamp (secs since Epoch).')
-  .option('-j --js', 'Ouput a JavaScript timestamp (ms since Epoch).')
-  .option('-z --inputTimezone <tz>', 'Use specified timezone when parsing input')
-  .option('-Z --outputTimezone <tz>', 'Convert output to specified timezone')
-  .option('-H --military', 'Use 24-hour (military) time in output by default')
-  .parse(process.argv);
+  .usage("<input> [options]")
+  .option("-i --inputFormat <format>", "e.g: \"MM-DD-YYYY\". Special handling for \"unix\".")
+  .option("-f --format <format>", "Output format. See momentjs docs for options.")
+  .option("-t --timeago", "Output in `timeago` format (fromNow).")
+  .option("-c --calendar", "Output in `calendar` format.")
+  .option("-u --unix", "Output a unix timestamp (secs since Epoch).")
+  .option("-j --js", "Ouput a JavaScript timestamp (ms since Epoch).")
+  .option("-z --inputTimezone <tz>", "Use specified timezone when parsing input")
+  .option("-Z --outputTimezone <tz>", "Convert output to specified timezone")
+  .option("-H --military", "Use 24-hour (military) time in output by default")
+  .parse(process.argv)
 
-var input = program.args[0] || Date.now();
-var inputInt = parseInt(input, 10);
-var isNumeric = inputInt.toString() === input;
-var timeFormat = program.military ? "HH:mm" : "h:mm A"
+const input = program.args[0] || Date.now()
+const inputInt = parseInt(input, 10)
+const isNumeric = inputInt.toString() === input
+const timeFormat = program.military ? "HH:mm" : "h:mm A"
 
-var constructor = program.inputTimezone
+const constructor = program.inputTimezone
   ? (...inputs) => moment.tz(...inputs, program.inputTimezone)
   : moment
 
-
-var date;
+let date
 if (program.inputFormat) {
-  if (program.inputFormat === 'unix') {
-    date = moment.unix(inputInt);
+  if (program.inputFormat === "unix") {
+    date = moment.unix(inputInt)
+  } else {
+    date = constructor(input, program.inputFormat)
   }
-  else {
-    date = constructor(input, program.inputFormat);
-  }
-}
-else if (isNumeric) {
-  date = constructor(inputInt);
-}
-else {
-  date = constructor(input);
+} else if (isNumeric) {
+  date = constructor(inputInt)
+} else {
+  date = constructor(input)
 }
 
-if(program.outputTimezone) {
+if (program.outputTimezone) {
   date = constructor(date.tz(program.outputTimezone).format("YYYY-MM-DDTHH:mm:ss"))
 }
 
-var output = console.log.bind(console);
+const output = (...out) => process.stdout.write([...out, "\n"].join(""))
 if (program.format) {
-  output(date.format(program.format));
-}
-else if (program.timeago) {
-  output(date.fromNow());
-}
-else if (program.calendar) {
+  output(date.format(program.format))
+} else if (program.timeago) {
+  output(date.fromNow())
+} else if (program.calendar) {
   output(date.calendar(null, {
-    sameDay: `[Today] [at] ${timeFormat}`,
-    nextDay: `[Tomorrow] [at] ${timeFormat}`,
+    sameDay:  `[Today] [at] ${timeFormat}`,
+    nextDay:  `[Tomorrow] [at] ${timeFormat}`,
     nextWeek: `dddd [at] ${timeFormat}`,
-    lastDay: `[Yesterday] [at] ${timeFormat}`,
+    lastDay:  `[Yesterday] [at] ${timeFormat}`,
     lastWeek: `[Last] dddd [at] ${timeFormat}`,
-    sameElse: `DD/MM/YYYY [at] ${timeFormat}`
-  }));
-}
-else if (program.unix) {
-  output(date.unix());
-}
-else if (program.js) {
-  output(date.valueOf());
-}
-else if (isNumeric) {
-  output(date.format());
-}
-else {
-  output(date.valueOf());
+    sameElse: `DD/MM/YYYY [at] ${timeFormat}`,
+  }))
+} else if (program.unix) {
+  output(date.unix())
+} else if (program.js) {
+  output(date.valueOf())
+} else if (isNumeric) {
+  output(date.format())
+} else {
+  output(date.valueOf())
 }
