@@ -1,28 +1,26 @@
 {
-  "name": "moment-cli",
-  "version": "0.0.4",
-  "description": "CLI for printing dates via momentjs.",
+  "name": "moment-tz-cli",
+  "version": "0.0.5",
+  "description": "CLI for printing dates via momentjs, with timezone support",
   "bin": {
     "moment": "./bin/moment"
   },
   "dependencies": {
-    "commander": "~1.1.1",
-    "moment": "~2.0.0"
-  },
-  "devDependencies": {
-    "mocha": "*"
+    "commander": "~2.15.1",
+    "moment-timezone": "^0.5.16"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cpsubrian/node-moment-cli.git"
+    "url": "git://github.com/b0o/moment-tz-cli.git"
   },
-  "homepage": "https://github.com/cpsubrian/node-moment-cli",
+  "homepage": "https://github.com/b0o/moment-tz-cli",
   "keywords": [
     "date",
     "time",
     "moment",
+    "timezone",
     "cli"
   ],
-  "author": "Brian Link <cpsubrian@gmail.com>",
+  "author": "Maddison Hellstrom <maddy@na.ai>",
   "license": "MIT"
 }
